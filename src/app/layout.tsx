@@ -37,7 +37,7 @@ export default function RootLayout({
           <FirebaseProvider>
             <BackgroundEffects />
             <GlobalNav />
-            {children}
+            <main>{children}</main>
             <AppFooter />
             <Toaster />
           </FirebaseProvider>

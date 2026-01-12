@@ -1,12 +1,11 @@
 "use client";
 import { useState } from 'react';
-import { motion } from 'framer-motion';
+import { motion, useAnimation } from 'framer-motion';
 import { Lock, ArrowRight } from 'lucide-react';
 import { signInWithEmailAndPassword } from 'firebase/auth';
 import { useAuth } from '@/firebase';
 import { useRouter } from 'next/navigation';
 import { useToast } from '@/hooks/use-toast';
-
 
 export default function LoginPage() {
   const [email, setEmail] = useState('');
@@ -15,21 +14,39 @@ export default function LoginPage() {
   const { auth } = useAuth();
   const router = useRouter();
   const { toast } = useToast();
-
+  const controls = useAnimation();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!auth) return;
 
+    // Client-side validation
+    if (!email.endsWith('@gmail.com') || password.length < 8) {
+      toast({
+        variant: "destructive",
+        title: "Validation Error",
+        description: "A condition for login was not met.",
+      });
+      controls.start({
+        x: [-10, 10, -10, 10, 0],
+        transition: { duration: 0.4 }
+      });
+      return;
+    }
+
     setFormState('sending');
     try {
       await signInWithEmailAndPassword(auth, email, password);
-      router.push('/');
+      router.push('/admin/dashboard');
     } catch (error: any) {
+      controls.start({
+        x: [-10, 10, -10, 10, 0],
+        transition: { duration: 0.4 }
+      });
       toast({
         variant: "destructive",
-        title: "Sign-in failed",
-        description: error.message,
+        title: "Access Denied",
+        description: "Your credentials could not be verified.",
       });
       setFormState('idle');
     }
@@ -42,7 +59,10 @@ export default function LoginPage() {
       transition={{ duration: 0.5 }}
       className="pt-32 pb-32 px-6 md:px-12 min-h-screen flex flex-col items-center"
     >
-      <div className="w-full max-w-sm relative z-10">
+      <motion.div 
+        animate={controls}
+        className="w-full max-w-sm relative z-10"
+      >
         <header className="mb-12 text-center">
            <div className="inline-flex items-center justify-center bg-neutral-900 border border-neutral-800 p-3 rounded-full mb-6">
               <Lock className="text-neutral-500" />
@@ -87,7 +107,7 @@ export default function LoginPage() {
              <ArrowRight size={16} />
           </button>
         </form>
-      </div>
+      </motion.div>
     </motion.div>
   );
 };
