@@ -12,6 +12,7 @@ const navLinks = [
   { href: '/writing', label: 'Writing' },
   { href: '/about', label: 'About' },
   { href: '/contact', label: 'Contact' },
+  { href: '/login', label: 'Admin' },
 ];
 
 const NavLink = ({ href, label, onClick }: { href: string, label: string, onClick?: () => void }) => {
