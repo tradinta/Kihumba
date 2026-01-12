@@ -2,18 +2,37 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Lock, ArrowRight } from 'lucide-react';
+import { signInWithEmailAndPassword } from 'firebase/auth';
+import { useAuth } from '@/firebase';
+import { useRouter } from 'next/navigation';
+import { useToast } from '@/hooks/use-toast';
+
 
 export default function LoginPage() {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
   const [formState, setFormState] = useState('idle'); // 'idle' | 'sending'
+  const { auth } = useAuth();
+  const router = useRouter();
+  const { toast } = useToast();
 
-  const handleSubmit = (e: React.FormEvent) => {
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    if (!auth) return;
+
     setFormState('sending');
-    // Placeholder for auth logic
-    setTimeout(() => {
-      // In a real app, you'd handle success/error here
-      setFormState('idle'); 
-    }, 1500);
+    try {
+      await signInWithEmailAndPassword(auth, email, password);
+      router.push('/');
+    } catch (error: any) {
+      toast({
+        variant: "destructive",
+        title: "Sign-in failed",
+        description: error.message,
+      });
+      setFormState('idle');
+    }
   };
 
   return (
@@ -40,6 +59,8 @@ export default function LoginPage() {
             <input 
               type="email" 
               required
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
               className="w-full bg-transparent border-b border-neutral-800 py-2 text-neutral-200 focus:outline-none focus:border-white transition-colors rounded-none"
             />
           </div>
@@ -49,6 +70,8 @@ export default function LoginPage() {
             <input 
               type="password" 
               required
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
               className="w-full bg-transparent border-b border-neutral-800 py-2 text-neutral-200 focus:outline-none focus:border-white transition-colors rounded-none"
             />
           </div>

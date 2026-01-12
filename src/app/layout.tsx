@@ -4,6 +4,8 @@ import { cn } from '@/lib/utils';
 import GlobalNav from './components/global-nav';
 import AppFooter from './components/footer';
 import BackgroundEffects from './components/background-effects';
+import { FirebaseProvider } from '@/firebase';
+import { Toaster } from '@/components/ui/toaster';
 
 export const metadata: Metadata = {
   title: 'Mark Allan | kihumba.com',
@@ -25,10 +27,13 @@ export default function RootLayout({
         <link href="https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet" />
       </head>
       <body className={cn("font-body bg-[#050505] min-h-screen text-neutral-200 selection:bg-neutral-800 selection:text-white overflow-x-hidden print:bg-white")}>
-        <BackgroundEffects />
-        <GlobalNav />
-        {children}
-        <AppFooter />
+        <FirebaseProvider>
+          <BackgroundEffects />
+          <GlobalNav />
+          {children}
+          <AppFooter />
+          <Toaster />
+        </FirebaseProvider>
       </body>
     </html>
   );
