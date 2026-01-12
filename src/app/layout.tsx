@@ -27,7 +27,7 @@ export default function RootLayout({
         <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@400;500&display=swap" rel="stylesheet" />
         <link href="https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet" />
       </head>
-      <body className={cn("font-body bg-[#050505] min-h-screen text-neutral-200 selection:bg-neutral-800 selection:text-white overflow-x-hidden print:bg-white")}>
+      <body className={cn("font-body min-h-screen text-neutral-200 selection:bg-neutral-800 selection:text-white overflow-x-hidden print:bg-white")}>
         <ThemeProvider
           attribute="class"
           defaultTheme="dark"
