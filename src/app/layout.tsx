@@ -6,7 +6,7 @@ import AppFooter from './components/footer';
 import BackgroundEffects from './components/background-effects';
 
 export const metadata: Metadata = {
-  title: 'System Architect Portfolio',
+  title: 'Mark Allan | kihumba.com',
   description: 'Design, engineering, and digital systems from pixels to production.',
 };
 

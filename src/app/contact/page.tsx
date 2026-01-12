@@ -23,7 +23,7 @@ export default function ContactPage() {
         <div className="mt-16 pt-8 border-t border-white/5">
            <p className="text-xs text-neutral-600 mb-4">Prefer direct contact?</p>
            <div className="flex flex-col gap-2 text-sm text-neutral-400 font-light">
-              <a href="mailto:hello@system.dev" className="hover:text-white transition-colors">hello@system.dev</a>
+              <a href="mailto:hello@kihumba.com" className="hover:text-white transition-colors">hello@kihumba.com</a>
               <div className="flex gap-4 mt-2">
                  <a href="#" className="hover:text-white cursor-pointer transition-colors border-b border-transparent hover:border-white/50 pb-px">LinkedIn</a>
                  <a href="#" className="hover:text-white cursor-pointer transition-colors border-b border-transparent hover:border-white/50 pb-px">GitHub</a>
