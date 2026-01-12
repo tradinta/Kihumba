@@ -105,7 +105,7 @@ export default function VideoPage() {
             <div className="relative aspect-video w-full rounded-md overflow-hidden mb-4 border">
               <Image
                 src={project.imageUrl}
-                alt={project.title}
+                alt={`${project.client} - ${project.title}`}
                 fill
                 className="object-cover transition-transform duration-500 group-hover:scale-105"
                 data-ai-hint={project.dataAiHint}

@@ -13,9 +13,9 @@ export default function WritingIndex() {
     >
       <header className="mb-24">
         <span className="text-sm font-mono text-muted-foreground uppercase tracking-widest block mb-4">Writing</span>
-        <p className="text-xl text-foreground/80 font-light leading-relaxed">
+        <h1 className="text-xl text-foreground/80 font-light leading-relaxed">
           Notes on systems, products, engineering, and visibility.
-        </p>
+        </h1>
       </header>
 
       <div className="flex flex-col">
@@ -32,9 +32,9 @@ export default function WritingIndex() {
               />
               
               <div className="pl-6 transition-all duration-500 group-hover:pl-8">
-                 <h3 className="text-xl font-light text-foreground/80 group-hover:text-foreground transition-colors mb-2">
+                 <h2 className="text-xl font-light text-foreground/80 group-hover:text-foreground transition-colors mb-2">
                    {article.title}
-                 </h3>
+                 </h2>
                  <p className="text-muted-foreground text-sm mb-3">
                    {article.premise}
                  </p>

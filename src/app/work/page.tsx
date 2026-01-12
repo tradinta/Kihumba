@@ -12,9 +12,9 @@ export default function WorkIndex() {
       className="pt-32 pb-32 px-6 md:px-12 max-w-7xl mx-auto min-h-screen"
     >
       <header className="mb-24">
-        <p className="text-sm font-mono text-muted-foreground uppercase tracking-widest max-w-md leading-relaxed">
+        <h1 className="text-sm font-mono text-muted-foreground uppercase tracking-widest max-w-md leading-relaxed">
           Selected systems I’ve designed, engineered, and shipped.
-        </p>
+        </h1>
       </header>
 
       <div className="flex flex-col">
@@ -31,9 +31,9 @@ export default function WorkIndex() {
               />
               <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-baseline">
                 <div className="lg:col-span-3">
-                  <h3 className="text-2xl font-light text-foreground/80 group-hover:text-foreground transition-colors tracking-tight">
+                  <h2 className="text-2xl font-light text-foreground/80 group-hover:text-foreground transition-colors tracking-tight">
                     {project.title}
-                  </h3>
+                  </h2>
                 </div>
                 <div className="lg:col-span-4">
                   <p className="text-muted-foreground font-medium text-sm leading-relaxed">

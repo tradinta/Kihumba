@@ -47,23 +47,9 @@ export default function LandingPage() {
             transition={{ duration: 1.5, ease: [0.16, 1, 0.3, 1], delay: 0.5 }}
             className="text-5xl md:text-7xl lg:text-8xl font-medium tracking-tighter leading-[0.9] text-foreground"
           >
-            I design, engineer,
-          </motion.h1>
-          <motion.h1
-            initial={{ opacity: 0, filter: "blur(12px)" }}
-            animate={{ opacity: 1, filter: "blur(0px)" }}
-            transition={{ duration: 1.5, ease: [0.16, 1, 0.3, 1], delay: 0.7 }}
-            className="text-5xl md:text-7xl lg:text-8xl font-medium tracking-tighter leading-[0.9] text-foreground/70"
-          >
-            and ship digital systems
-          </motion.h1>
-          <motion.h1
-            initial={{ opacity: 0, filter: "blur(12px)" }}
-            animate={{ opacity: 1, filter: "blur(0px)" }}
-            transition={{ duration: 1.5, ease: [0.16, 1, 0.3, 1], delay: 0.9 }}
-            className="text-5xl md:text-7xl lg:text-8xl font-medium tracking-tighter leading-[0.9] text-foreground/40"
-          >
-            from pixels to production.
+            I design, engineer, <br/>
+            <span className="text-foreground/70">and ship digital systems</span> <br/>
+            <span className="text-foreground/40">from pixels to production.</span>
           </motion.h1>
           <div className="h-20 mt-12 flex flex-col justify-center">
             <AnimatePresence mode="wait">

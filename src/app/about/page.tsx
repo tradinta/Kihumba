@@ -13,9 +13,9 @@ export default function AboutPage() {
     >
       <header className="mb-32">
         <span className="text-xs font-mono text-muted-foreground uppercase tracking-widest block mb-8">About</span>
-        <p className="text-xl md:text-2xl text-foreground/80 font-light leading-relaxed">
+        <h1 className="text-xl md:text-2xl text-foreground/80 font-light leading-relaxed">
           I describe myself as someone who thinks in systems. I move fluidly between design, engineering, and distribution, caring deeply about shipping things that survive real usage. I understand that aesthetics without structure fail, and structure without taste is invisible.
-        </p>
+        </h1>
       </header>
 
       <section className="mb-32">
