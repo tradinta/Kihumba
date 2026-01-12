@@ -4,15 +4,15 @@ import { usePathname } from 'next/navigation';
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X } from 'lucide-react';
+import { useUser } from '@/firebase';
 
-const navLinks = [
+const baseNavLinks = [
   { href: '/', label: 'Index' },
   { href: '/work', label: 'Systems' },
   { href: '/video', label: 'Video' },
   { href: '/writing', label: 'Writing' },
   { href: '/about', label: 'About' },
   { href: '/contact', label: 'Contact' },
-  { href: '/login', label: 'Admin' },
 ];
 
 const NavLink = ({ href, label, onClick }: { href: string, label: string, onClick?: () => void }) => {
@@ -32,13 +32,20 @@ const NavLink = ({ href, label, onClick }: { href: string, label: string, onClic
 
 export default function GlobalNav() {
   const [isOpen, setIsOpen] = useState(false);
+  const { user } = useUser();
+  const pathname = usePathname();
+
+  const navLinks = [
+    ...baseNavLinks,
+    ...(user ? [{ href: '/admin/dashboard', label: 'Dashboard' }] : [{ href: '/login', label: 'Admin' }])
+  ];
 
   return (
     <>
       {/* Desktop Nav */}
       <nav className="fixed top-6 right-6 md:right-12 z-50 hidden md:flex gap-6 text-sm font-mono uppercase tracking-widest mix-blend-difference print:hidden">
         {navLinks.map(link => (
-          <Link href={link.href} key={link.href} className={`${usePathname().startsWith(link.href) && link.href !== '/' || usePathname() === link.href ? 'text-white' : 'text-neutral-500 hover:text-white'} transition-colors`}>
+          <Link href={link.href} key={link.href} className={`${(pathname === link.href) || (link.href !== '/' && pathname.startsWith(link.href)) ? 'text-white' : 'text-neutral-500 hover:text-white'} transition-colors`}>
              {link.label}
           </Link>
         ))}
