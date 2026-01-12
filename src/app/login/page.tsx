@@ -1,32 +1,28 @@
 "use client";
 import { useState } from 'react';
-import { motion, useAnimation } from 'framer-motion';
-import { Lock, ArrowRight } from 'lucide-react';
+import { motion, useAnimation, AnimatePresence } from 'framer-motion';
+import { Lock, ArrowRight, XCircle } from 'lucide-react';
 import { signInWithEmailAndPassword } from 'firebase/auth';
 import { useAuth } from '@/firebase';
 import { useRouter } from 'next/navigation';
-import { useToast } from '@/hooks/use-toast';
 
 export default function LoginPage() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [formState, setFormState] = useState('idle'); // 'idle' | 'sending'
+  const [error, setError] = useState<string | null>(null);
   const { auth } = useAuth();
   const router = useRouter();
-  const { toast } = useToast();
   const controls = useAnimation();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!auth) return;
+    setError(null);
 
     // Client-side validation
     if (!email.endsWith('@gmail.com') || password.length < 8) {
-      toast({
-        variant: "destructive",
-        title: "Validation Error",
-        description: "A condition for login was not met.",
-      });
+      setError("A condition for login was not met. Please verify your credentials.");
       controls.start({
         x: [-10, 10, -10, 10, 0],
         transition: { duration: 0.4 }
@@ -43,11 +39,7 @@ export default function LoginPage() {
         x: [-10, 10, -10, 10, 0],
         transition: { duration: 0.4 }
       });
-      toast({
-        variant: "destructive",
-        title: "Access Denied",
-        description: "Your credentials could not be verified.",
-      });
+      setError("Access Denied. Your credentials could not be verified.");
       setFormState('idle');
     }
   };
@@ -96,17 +88,34 @@ export default function LoginPage() {
             />
           </div>
 
-          <button 
-            type="submit"
-            disabled={formState === 'sending'}
-            className="w-full bg-neutral-900 border border-neutral-800 text-white py-3 px-6 text-sm font-medium hover:bg-neutral-800 transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-3 mt-4"
-          >
-            {formState === 'sending' ? (
-               <span className="w-4 h-4 border border-neutral-500 border-t-transparent rounded-full animate-spin" />
-            ) : 'Sign In'}
-             <ArrowRight size={16} />
-          </button>
+          <div className="pt-4">
+            <button 
+              type="submit"
+              disabled={formState === 'sending'}
+              className="w-full bg-neutral-900 border border-neutral-800 text-white py-3 px-6 text-sm font-medium hover:bg-neutral-800 transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-3"
+            >
+              {formState === 'sending' ? (
+                 <span className="w-4 h-4 border border-neutral-500 border-t-transparent rounded-full animate-spin" />
+              ) : 'Sign In'}
+               <ArrowRight size={16} />
+            </button>
+          </div>
         </form>
+        <div className="mt-6 h-10">
+            <AnimatePresence>
+            {error && (
+                <motion.div
+                initial={{ opacity: 0, y: -10 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: 10 }}
+                className="flex items-center justify-center gap-3 text-sm text-red-500/80 bg-red-900/10 border border-red-500/20 rounded-sm p-2"
+                >
+                <XCircle size={16} />
+                <span>{error}</span>
+                </motion.div>
+            )}
+            </AnimatePresence>
+        </div>
       </motion.div>
     </motion.div>
   );
