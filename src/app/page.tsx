@@ -32,7 +32,7 @@ export default function LandingPage() {
 
   return (
     <>
-      <div className={`fixed inset-0 bg-black z-[100] transition-opacity duration-[2000ms] pointer-events-none ${loaded ? 'opacity-0' : 'opacity-100'}`} />
+      <div className={`fixed inset-0 bg-background z-[100] transition-opacity duration-[2000ms] pointer-events-none ${loaded ? 'opacity-0' : 'opacity-100'}`} />
 
       <motion.main
         initial={{ opacity: 0 }}
@@ -45,7 +45,7 @@ export default function LandingPage() {
             initial={{ opacity: 0, filter: "blur(12px)" }}
             animate={{ opacity: 1, filter: "blur(0px)" }}
             transition={{ duration: 1.5, ease: [0.16, 1, 0.3, 1], delay: 0.5 }}
-            className="text-5xl md:text-7xl lg:text-8xl font-medium tracking-tighter leading-[0.9] text-white"
+            className="text-5xl md:text-7xl lg:text-8xl font-medium tracking-tighter leading-[0.9] text-foreground"
           >
             I design, engineer,
           </motion.h1>
@@ -53,7 +53,7 @@ export default function LandingPage() {
             initial={{ opacity: 0, filter: "blur(12px)" }}
             animate={{ opacity: 1, filter: "blur(0px)" }}
             transition={{ duration: 1.5, ease: [0.16, 1, 0.3, 1], delay: 0.7 }}
-            className="text-5xl md:text-7xl lg:text-8xl font-medium tracking-tighter leading-[0.9] text-neutral-400"
+            className="text-5xl md:text-7xl lg:text-8xl font-medium tracking-tighter leading-[0.9] text-foreground/70"
           >
             and ship digital systems
           </motion.h1>
@@ -61,7 +61,7 @@ export default function LandingPage() {
             initial={{ opacity: 0, filter: "blur(12px)" }}
             animate={{ opacity: 1, filter: "blur(0px)" }}
             transition={{ duration: 1.5, ease: [0.16, 1, 0.3, 1], delay: 0.9 }}
-            className="text-5xl md:text-7xl lg:text-8xl font-medium tracking-tighter leading-[0.9] text-neutral-600"
+            className="text-5xl md:text-7xl lg:text-8xl font-medium tracking-tighter leading-[0.9] text-foreground/40"
           >
             from pixels to production.
           </motion.h1>
@@ -75,10 +75,10 @@ export default function LandingPage() {
                 transition={{ duration: 0.5, ease: "easeOut" }}
                 className="flex flex-col gap-1"
               >
-                <span className="text-sm uppercase tracking-[0.2em] text-neutral-500 font-medium">
+                <span className="text-sm uppercase tracking-[0.2em] text-muted-foreground font-medium">
                   {roles[roleIndex].title}
                 </span>
-                <span className="text-lg text-neutral-400 font-light tracking-wide">
+                <span className="text-lg text-foreground/80 font-light tracking-wide">
                   {roles[roleIndex].sub}
                 </span>
               </motion.div>
@@ -91,10 +91,10 @@ export default function LandingPage() {
 
       <section className="relative z-10 pb-32">
         <div className="max-w-7xl mx-auto px-6 md:px-12 mb-12">
-           <motion.p initial={{ opacity: 0, y: 10 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="text-neutral-500 font-mono text-sm uppercase tracking-widest mb-2">The Quiet Work</motion.p>
-           <motion.h2 initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} className="text-2xl font-light text-neutral-300 max-w-lg">Most of my work ships quietly, behind logins and NDAs.</motion.h2>
+           <motion.p initial={{ opacity: 0, y: 10 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="text-muted-foreground font-mono text-sm uppercase tracking-widest mb-2">The Quiet Work</motion.p>
+           <motion.h2 initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} className="text-2xl font-light text-foreground/80 max-w-lg">Most of my work ships quietly, behind logins and NDAs.</motion.h2>
         </div>
-        <div className="border-t border-white/5">
+        <div className="border-t border-border">
           <ProjectStrip title="SaaS Platform Core" stack="Next.js + Go • AWS" outcome="Scaled to 100k+ daily active users with sub-100ms API latency." />
           <ProjectStrip title="E-Commerce Analytics" stack="BigQuery • React • Python" outcome="Processed $50M+ transaction volume with real-time reporting." />
           <ProjectStrip title="Fintech Mobile App" stack="Flutter • Cloud Functions" outcome="Zero-downtime migration of legacy system to microservices." />
@@ -103,44 +103,42 @@ export default function LandingPage() {
 
       <section className="relative z-10">
         <div className="w-full"><VideoPlaceholders /></div>
-        <div className="bg-neutral-900 py-24 px-6 md:px-12 border-b border-white/5">
+        <div className="bg-card py-24 px-6 md:px-12 border-b border-border">
           <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-end gap-8">
             <div>
-              <h2 className="text-4xl md:text-5xl font-medium tracking-tighter text-white mb-2">I don't just build products.</h2>
-              <h2 className="text-4xl md:text-5xl font-medium tracking-tighter text-neutral-500">I make them visible.</h2>
+              <h2 className="text-4xl md:text-5xl font-medium tracking-tighter text-foreground mb-2">I don't just build products.</h2>
+              <h2 className="text-4xl md:text-5xl font-medium tracking-tighter text-muted-foreground">I make them visible.</h2>
             </div>
           </div>
         </div>
       </section>
 
       <section className="relative z-10 py-48 px-6 md:px-12 flex flex-col items-center justify-center text-center">
-        <motion.p initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} className="max-w-xl text-neutral-400 text-lg md:text-xl font-light leading-relaxed mb-12">
-          If you need someone who can design it, build it, scale it, and ship it<br/><span className="text-white font-normal">without hand-holding.</span>
+        <motion.p initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} className="max-w-xl text-foreground/70 text-lg md:text-xl font-light leading-relaxed mb-12">
+          If you need someone who can design it, build it, scale it, and ship it<br/><span className="text-foreground font-normal">without hand-holding.</span>
         </motion.p>
 
         <div className="flex flex-col md:flex-row gap-6">
           <Link href="/work" passHref>
             <motion.button
-              whileHover={{ scale: 1.05, backgroundColor: "#1a1a1a" }}
+              whileHover={{ scale: 1.05, filter: 'brightness(1.1)' }}
               whileTap={{ scale: 0.98 }}
-              className="group relative px-8 py-4 bg-transparent border border-neutral-700 text-white rounded-sm overflow-hidden transition-all duration-300"
+              className="group relative px-8 py-4 bg-transparent border border-border text-foreground rounded-sm overflow-hidden transition-all duration-300"
             >
                <span className="relative z-10 flex items-center gap-3 font-medium tracking-wide">
                 View Systems Index
               </span>
-              <div className="absolute inset-0 bg-white/5 transform -translate-x-full group-hover:translate-x-0 transition-transform duration-300" />
             </motion.button>
           </Link>
           <Link href="/contact" passHref>
             <motion.button
-              whileHover={{ scale: 1.05, backgroundColor: "#1a1a1a" }}
+              whileHover={{ scale: 1.05, filter: 'brightness(1.2)' }}
               whileTap={{ scale: 0.98 }}
-              className="group relative px-8 py-4 bg-black border border-neutral-800 text-white rounded-sm overflow-hidden transition-all duration-300"
+              className="group relative px-8 py-4 bg-background border border-border text-foreground rounded-sm overflow-hidden transition-all duration-300"
             >
               <span className="relative z-10 flex items-center gap-3 font-medium tracking-wide">
                 Start a conversation <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
               </span>
-              <div className="absolute inset-0 bg-neutral-900/50 transform translate-y-full group-hover:translate-y-0 transition-transform duration-300" />
             </motion.button>
           </Link>
         </div>

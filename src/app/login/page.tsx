@@ -56,35 +56,35 @@ export default function LoginPage() {
         className="w-full max-w-sm relative z-10"
       >
         <header className="mb-12 text-center">
-           <div className="inline-flex items-center justify-center bg-neutral-900 border border-neutral-800 p-3 rounded-full mb-6">
-              <Lock className="text-neutral-500" />
+           <div className="inline-flex items-center justify-center bg-card border p-3 rounded-full mb-6">
+              <Lock className="text-muted-foreground" />
            </div>
-           <h1 className="text-2xl font-medium text-white mb-2">Admin Access</h1>
-           <p className="text-neutral-500 font-light leading-relaxed">
+           <h1 className="text-2xl font-medium text-foreground mb-2">Admin Access</h1>
+           <p className="text-muted-foreground font-light leading-relaxed">
              This area is restricted. It is used for managing site content and is not intended for public access.
            </p>
         </header>
 
         <form onSubmit={handleSubmit} className="space-y-6">
           <div>
-            <label className="block text-xs font-mono text-neutral-600 uppercase tracking-widest mb-1">Email</label>
+            <label className="block text-xs font-mono text-muted-foreground uppercase tracking-widest mb-1">Email</label>
             <input 
               type="email" 
               required
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              className="w-full bg-transparent border-b border-neutral-800 py-2 text-neutral-200 focus:outline-none focus:border-white transition-colors rounded-none"
+              className="w-full bg-transparent border-b border-border py-2 text-foreground focus:outline-none focus:border-foreground transition-colors rounded-none"
             />
           </div>
 
           <div>
-            <label className="block text-xs font-mono text-neutral-600 uppercase tracking-widest mb-1">Password</label>
+            <label className="block text-xs font-mono text-muted-foreground uppercase tracking-widest mb-1">Password</label>
             <input 
               type="password" 
               required
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              className="w-full bg-transparent border-b border-neutral-800 py-2 text-neutral-200 focus:outline-none focus:border-white transition-colors rounded-none"
+              className="w-full bg-transparent border-b border-border py-2 text-foreground focus:outline-none focus:border-foreground transition-colors rounded-none"
             />
           </div>
 
@@ -92,10 +92,10 @@ export default function LoginPage() {
             <button 
               type="submit"
               disabled={formState === 'sending'}
-              className="w-full bg-neutral-900 border border-neutral-800 text-white py-3 px-6 text-sm font-medium hover:bg-neutral-800 transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-3"
+              className="w-full bg-secondary text-secondary-foreground border border-border py-3 px-6 text-sm font-medium hover:bg-accent hover:text-accent-foreground transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-3"
             >
               {formState === 'sending' ? (
-                 <span className="w-4 h-4 border border-neutral-500 border-t-transparent rounded-full animate-spin" />
+                 <span className="w-4 h-4 border border-muted-foreground border-t-transparent rounded-full animate-spin" />
               ) : 'Sign In'}
                <ArrowRight size={16} />
             </button>
@@ -108,7 +108,7 @@ export default function LoginPage() {
                 initial={{ opacity: 0, y: -10 }}
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: 10 }}
-                className="flex items-center justify-center gap-3 text-sm text-red-500/80 bg-red-900/10 border border-red-500/20 rounded-sm p-2"
+                className="flex items-center justify-center gap-3 text-sm text-destructive-foreground bg-destructive/10 border border-destructive/20 rounded-sm p-2"
                 >
                 <XCircle size={16} />
                 <span>{error}</span>

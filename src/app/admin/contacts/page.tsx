@@ -27,7 +27,7 @@ export default function ContactsAdminPage() {
   if (loading || !user) {
     return (
       <div className="flex min-h-screen items-center justify-center">
-        <div className="h-8 w-8 animate-spin rounded-full border-4 border-neutral-800 border-t-transparent" />
+        <div className="h-8 w-8 animate-spin rounded-full border-4 border-muted-foreground border-t-transparent" />
       </div>
     );
   }
@@ -42,17 +42,17 @@ export default function ContactsAdminPage() {
       <div className="max-w-7xl mx-auto relative z-10">
         <header className="flex justify-between items-center mb-16">
             <div>
-                <Link href="/admin/dashboard" className="flex items-center gap-2 text-sm font-mono text-neutral-400 hover:text-white transition-colors uppercase tracking-widest mb-4">
+                <Link href="/admin/dashboard" className="flex items-center gap-2 text-sm font-mono text-muted-foreground hover:text-foreground transition-colors uppercase tracking-widest mb-4">
                     <ArrowLeft size={14} /> Dashboard
                 </Link>
-                <h1 className="text-4xl font-medium tracking-tighter text-white">
+                <h1 className="text-4xl font-medium tracking-tighter text-foreground">
                     Contact Messages
                 </h1>
-                <p className="text-neutral-400">View messages sent through your contact form.</p>
+                <p className="text-muted-foreground">View messages sent through your contact form.</p>
             </div>
         </header>
 
-        <div className="bg-neutral-900/50 border border-white/5 rounded-lg">
+        <div className="bg-card border rounded-lg">
             <Table>
                 <TableHeader>
                     <TableRow>
@@ -66,10 +66,10 @@ export default function ContactsAdminPage() {
                 <TableBody>
                     {contacts.map((contact) => (
                         <TableRow key={contact.id}>
-                            <TableCell className="font-medium text-white">{contact.name}</TableCell>
-                            <TableCell className="text-neutral-400">{contact.email}</TableCell>
-                            <TableCell className="text-neutral-400">{contact.context}</TableCell>
-                            <TableCell className="text-neutral-400">{contact.date}</TableCell>
+                            <TableCell className="font-medium text-foreground">{contact.name}</TableCell>
+                            <TableCell className="text-muted-foreground">{contact.email}</TableCell>
+                            <TableCell className="text-muted-foreground">{contact.context}</TableCell>
+                            <TableCell className="text-muted-foreground">{contact.date}</TableCell>
                             <TableCell className="text-right">
                                 <Button variant="ghost" size="sm">View</Button>
                                 <Button variant="ghost" size="sm" className="text-red-500 hover:text-red-400">Delete</Button>

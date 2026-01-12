@@ -3,10 +3,10 @@ import React, { useRef } from 'react';
 import { motion, useInView } from 'framer-motion';
 import { Terminal, Cpu, Layers, Zap, Database, Cloud, Layout, Code } from 'lucide-react';
 
-const SkillTag = ({ icon: Icon, label, color = "text-neutral-400" }: { icon: React.ElementType, label: string, color?: string }) => (
-    <motion.div className="group relative flex items-center gap-3 px-5 py-3 bg-neutral-900/40 border border-white/5 rounded-sm hover:border-white/20 transition-colors cursor-default backdrop-blur-sm" whileHover={{ scale: 1.02, x: 5 }}>
+const SkillTag = ({ icon: Icon, label, color = "text-muted-foreground" }: { icon: React.ElementType, label: string, color?: string }) => (
+    <motion.div className="group relative flex items-center gap-3 px-5 py-3 bg-card border rounded-sm hover:border-foreground/20 transition-colors cursor-default backdrop-blur-sm" whileHover={{ scale: 1.02, x: 5 }}>
       <Icon size={16} className={`${color} opacity-70 group-hover:opacity-100 transition-opacity`} />
-      <span className="text-sm font-medium tracking-wide text-neutral-300 group-hover:text-white transition-colors">{label}</span>
+      <span className="text-sm font-medium tracking-wide text-foreground/80 group-hover:text-foreground transition-colors">{label}</span>
     </motion.div>
 );
   

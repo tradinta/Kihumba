@@ -23,7 +23,7 @@ const NavLink = ({ href, label, onClick }: { href: string, label: string, onClic
     <Link 
       href={href} 
       onClick={onClick}
-      className={`${isActive ? 'text-white' : 'text-neutral-400 hover:text-white'} transition-colors text-lg md:text-sm`}
+      className={`${isActive ? 'text-foreground' : 'text-muted-foreground hover:text-foreground'} transition-colors text-lg md:text-sm`}
     >
       {label}
     </Link>
@@ -43,9 +43,9 @@ export default function GlobalNav() {
   return (
     <>
       {/* Desktop Nav */}
-      <nav className="fixed top-6 right-6 md:right-12 z-50 hidden md:flex gap-6 text-sm font-mono uppercase tracking-widest mix-blend-difference print:hidden">
+      <nav className="fixed top-6 right-6 md:right-12 z-50 hidden md:flex gap-6 text-sm font-mono uppercase tracking-widest print:hidden">
         {navLinks.map(link => (
-          <Link href={link.href} key={link.href} className={`${(pathname === link.href) || (link.href !== '/' && pathname.startsWith(link.href)) ? 'text-white' : 'text-neutral-500 hover:text-white'} transition-colors`}>
+          <Link href={link.href} key={link.href} className={`${(pathname === link.href) || (link.href !== '/' && pathname.startsWith(link.href)) ? 'text-foreground dark:text-white' : 'text-muted-foreground hover:text-foreground dark:hover:text-white'} transition-colors mix-blend-difference`}>
              {link.label}
           </Link>
         ))}
@@ -56,7 +56,7 @@ export default function GlobalNav() {
          <motion.button 
             whileTap={{ scale: 0.9 }}
             onClick={() => setIsOpen(!isOpen)} 
-            className="p-2 bg-black/30 backdrop-blur-sm rounded-full text-white"
+            className="p-2 bg-background/30 dark:bg-black/30 backdrop-blur-sm rounded-full text-foreground dark:text-white"
          >
             <AnimatePresence mode="wait">
               {isOpen ? (
@@ -79,7 +79,7 @@ export default function GlobalNav() {
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
                 transition={{ duration: 0.3 }}
-                className="md:hidden fixed inset-0 bg-black/80 backdrop-blur-lg z-50 flex items-center justify-center print:hidden"
+                className="md:hidden fixed inset-0 bg-background/80 dark:bg-black/80 backdrop-blur-lg z-50 flex items-center justify-center print:hidden"
             >
                 <nav className="flex flex-col items-center gap-8 font-mono uppercase tracking-widest">
                     {navLinks.map((link, i) => (

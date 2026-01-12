@@ -22,7 +22,7 @@ export default function SettingsAdminPage() {
   if (loading || !user) {
     return (
       <div className="flex min-h-screen items-center justify-center">
-        <div className="h-8 w-8 animate-spin rounded-full border-4 border-neutral-800 border-t-transparent" />
+        <div className="h-8 w-8 animate-spin rounded-full border-4 border-muted-foreground border-t-transparent" />
       </div>
     );
   }
@@ -37,13 +37,13 @@ export default function SettingsAdminPage() {
       <div className="max-w-4xl mx-auto relative z-10">
         <header className="flex justify-between items-center mb-16">
             <div>
-                <Link href="/admin/dashboard" className="flex items-center gap-2 text-sm font-mono text-neutral-400 hover:text-white transition-colors uppercase tracking-widest mb-4">
+                <Link href="/admin/dashboard" className="flex items-center gap-2 text-sm font-mono text-muted-foreground hover:text-foreground transition-colors uppercase tracking-widest mb-4">
                     <ArrowLeft size={14} /> Dashboard
                 </Link>
-                <h1 className="text-4xl font-medium tracking-tighter text-white">
+                <h1 className="text-4xl font-medium tracking-tighter text-foreground">
                     Site Settings
                 </h1>
-                <p className="text-neutral-400">Manage global site information and metadata.</p>
+                <p className="text-muted-foreground">Manage global site information and metadata.</p>
             </div>
              <Button>
                 <Save className="mr-2" /> Save Changes
@@ -51,8 +51,8 @@ export default function SettingsAdminPage() {
         </header>
 
         <div className="space-y-8">
-            <div className="p-8 bg-neutral-900/50 border border-white/5 rounded-lg space-y-6">
-                <h2 className="text-xl font-medium text-white">General Information</h2>
+            <div className="p-8 bg-card border rounded-lg space-y-6">
+                <h2 className="text-xl font-medium text-foreground">General Information</h2>
                 <div className="space-y-2">
                     <Label htmlFor="site-title">Site Title</Label>
                     <Input id="site-title" defaultValue="Mark Allan | kihumba.com" />
@@ -67,8 +67,8 @@ export default function SettingsAdminPage() {
                 </div>
             </div>
 
-             <div className="p-8 bg-neutral-900/50 border border-white/5 rounded-lg space-y-6">
-                <h2 className="text-xl font-medium text-white">Social Links</h2>
+             <div className="p-8 bg-card border rounded-lg space-y-6">
+                <h2 className="text-xl font-medium text-foreground">Social Links</h2>
                 <div className="space-y-2">
                     <Label htmlFor="linkedin-url">LinkedIn URL</Label>
                     <Input id="linkedin-url" placeholder="https://linkedin.com/in/your-profile" />

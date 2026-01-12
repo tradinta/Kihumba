@@ -30,7 +30,7 @@ const ShimmerCursor = () => {
         y: springY,
         translateX: '-50%',
         translateY: '-50%',
-        background: 'radial-gradient(circle, rgba(255,255,255,0.03) 0%, rgba(0,0,0,0) 60%)',
+        background: 'radial-gradient(circle, hsl(var(--foreground) / 0.03) 0%, transparent 60%)',
       }}
     />
   );
@@ -105,7 +105,7 @@ const AmbientScene = ({ intensity = 1 }) => {
           return;
       }
 
-      ctx.fillStyle = "#555";
+      ctx.fillStyle = "hsl(var(--muted-foreground))";
       ctx.lineWidth = 1;
       
       const currentIntensity = intensity; 
@@ -135,7 +135,7 @@ const AmbientScene = ({ intensity = 1 }) => {
           if (dist < connectionDistance) {
             ctx.globalAlpha = 0.15 * (1 - dist / connectionDistance) * currentIntensity;
             ctx.beginPath();
-            ctx.strokeStyle = "#555";
+            ctx.strokeStyle = "hsl(var(--muted-foreground))";
             ctx.moveTo(p.x, p.y);
             ctx.lineTo(p2.x, p2.y);
             ctx.stroke();
@@ -155,7 +155,7 @@ const AmbientScene = ({ intensity = 1 }) => {
   return (
     <canvas 
       ref={canvasRef} 
-      className="fixed inset-0 z-0 pointer-events-none opacity-60 mix-blend-screen transition-opacity duration-1000 print:hidden"
+      className="fixed inset-0 z-0 pointer-events-none opacity-60 mix-blend-screen dark:mix-blend-color-dodge transition-opacity duration-1000 print:hidden"
     />
   );
 };

@@ -51,7 +51,7 @@ export default function VideoPage() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7 }}
-          className="text-5xl md:text-7xl font-medium tracking-tighter text-white mb-4"
+          className="text-5xl md:text-7xl font-medium tracking-tighter text-foreground mb-4"
         >
           Visual Storytelling
         </motion.h1>
@@ -59,7 +59,7 @@ export default function VideoPage() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0.2 }}
-          className="text-lg text-neutral-400 font-light max-w-2xl mx-auto"
+          className="text-lg text-muted-foreground font-light max-w-2xl mx-auto"
         >
           From high-energy product launches to compelling brand narratives, I craft videos that capture attention and drive results.
         </motion.p>
@@ -80,17 +80,17 @@ export default function VideoPage() {
             className="text-center"
           >
             <div className="flex justify-center mb-4">
-              <service.icon className="w-10 h-10 text-neutral-500" />
+              <service.icon className="w-10 h-10 text-muted-foreground" />
             </div>
-            <h3 className="text-lg text-white font-medium mb-2">{service.title}</h3>
-            <p className="text-neutral-400 font-light">{service.desc}</p>
+            <h3 className="text-lg text-foreground font-medium mb-2">{service.title}</h3>
+            <p className="text-muted-foreground font-light">{service.desc}</p>
           </motion.div>
         ))}
       </div>
 
-      <div className="my-32 border-t border-white/10" />
+      <div className="my-32 border-t border-border" />
 
-      <h2 className="text-3xl font-medium text-white mb-12 text-center">Selected Work</h2>
+      <h2 className="text-3xl font-medium text-foreground mb-12 text-center">Selected Work</h2>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-16">
         {projects.map((project, i) => (
@@ -102,7 +102,7 @@ export default function VideoPage() {
             transition={{ duration: 0.7, delay: i * 0.1 }}
             className="group"
           >
-            <div className="relative aspect-video w-full rounded-md overflow-hidden mb-4 border border-white/10">
+            <div className="relative aspect-video w-full rounded-md overflow-hidden mb-4 border">
               <Image
                 src={project.imageUrl}
                 alt={project.title}
@@ -116,10 +116,10 @@ export default function VideoPage() {
                  <p className="text-sm text-neutral-300">{project.client}</p>
               </div>
             </div>
-            <p className="text-neutral-400 font-light mb-3">{project.description}</p>
+            <p className="text-muted-foreground font-light mb-3">{project.description}</p>
             <div className="flex flex-wrap gap-2">
               {project.tags.map(tag => (
-                <span key={tag} className="text-xs font-mono text-neutral-500 bg-white/5 px-2 py-1 rounded">
+                <span key={tag} className="text-xs font-mono text-muted-foreground bg-secondary px-2 py-1 rounded">
                   {tag}
                 </span>
               ))}

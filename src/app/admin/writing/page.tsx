@@ -29,7 +29,7 @@ export default function WritingAdminPage() {
   if (loading || !user) {
     return (
       <div className="flex min-h-screen items-center justify-center">
-        <div className="h-8 w-8 animate-spin rounded-full border-4 border-neutral-800 border-t-transparent" />
+        <div className="h-8 w-8 animate-spin rounded-full border-4 border-muted-foreground border-t-transparent" />
       </div>
     );
   }
@@ -44,20 +44,20 @@ export default function WritingAdminPage() {
       <div className="max-w-7xl mx-auto relative z-10">
         <header className="flex justify-between items-center mb-16">
             <div>
-                <Link href="/admin/dashboard" className="flex items-center gap-2 text-sm font-mono text-neutral-400 hover:text-white transition-colors uppercase tracking-widest mb-4">
+                <Link href="/admin/dashboard" className="flex items-center gap-2 text-sm font-mono text-muted-foreground hover:text-foreground transition-colors uppercase tracking-widest mb-4">
                     <ArrowLeft size={14} /> Dashboard
                 </Link>
-                <h1 className="text-4xl font-medium tracking-tighter text-white">
+                <h1 className="text-4xl font-medium tracking-tighter text-foreground">
                     Manage Writing
                 </h1>
-                <p className="text-neutral-400">Create, edit, and manage your articles.</p>
+                <p className="text-muted-foreground">Create, edit, and manage your articles.</p>
             </div>
             <Button>
                 <PlusCircle className="mr-2" /> New Article
             </Button>
         </header>
 
-        <div className="bg-neutral-900/50 border border-white/5 rounded-lg">
+        <div className="bg-card border rounded-lg">
             <Table>
                 <TableHeader>
                     <TableRow>
@@ -69,8 +69,8 @@ export default function WritingAdminPage() {
                 <TableBody>
                     {articles.map((article) => (
                         <TableRow key={article.id}>
-                            <TableCell className="font-medium text-white">{article.title}</TableCell>
-                            <TableCell className="text-neutral-400">{article.date}</TableCell>
+                            <TableCell className="font-medium text-foreground">{article.title}</TableCell>
+                            <TableCell className="text-muted-foreground">{article.date}</TableCell>
                             <TableCell className="text-right">
                                 <Button variant="ghost" size="sm">Edit</Button>
                                 <Button variant="ghost" size="sm" className="text-red-500 hover:text-red-400">Delete</Button>

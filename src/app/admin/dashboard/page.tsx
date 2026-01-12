@@ -19,7 +19,7 @@ export default function DashboardPage() {
   if (loading || !user) {
     return (
       <div className="flex min-h-screen items-center justify-center">
-        <div className="h-8 w-8 animate-spin rounded-full border-4 border-neutral-800 border-t-transparent" />
+        <div className="h-8 w-8 animate-spin rounded-full border-4 border-muted-foreground border-t-transparent" />
       </div>
     );
   }
@@ -34,12 +34,12 @@ export default function DashboardPage() {
       <div className="max-w-7xl mx-auto relative z-10">
         <header className="flex justify-between items-center mb-16">
             <div>
-                <h1 className="text-4xl font-medium tracking-tighter text-white">
+                <h1 className="text-4xl font-medium tracking-tighter text-foreground">
                     Dashboard
                 </h1>
-                <p className="text-neutral-400">Welcome back, {user.email}</p>
+                <p className="text-muted-foreground">Welcome back, {user.email}</p>
             </div>
-            <Button variant="ghost" onClick={logout} className="text-neutral-400 hover:text-white">
+            <Button variant="ghost" onClick={logout} className="text-muted-foreground hover:text-foreground">
                 <LogOut className="mr-2" /> Logout
             </Button>
         </header>
@@ -80,12 +80,12 @@ const ManagementCard = ({ icon: Icon, title, description, href }: { icon: React.
     return (
         <motion.div 
             whileHover={{ y: -5, boxShadow: '0 10px 20px rgba(0,0,0,0.2)' }}
-            className="bg-neutral-900/50 border border-white/5 p-6 rounded-lg cursor-pointer"
+            className="bg-card border p-6 rounded-lg cursor-pointer"
             onClick={() => router.push(href)}
         >
-            <Icon className="w-8 h-8 text-neutral-500 mb-4" />
-            <h2 className="text-xl font-medium text-white mb-2">{title}</h2>
-            <p className="text-neutral-400 font-light">{description}</p>
+            <Icon className="w-8 h-8 text-muted-foreground mb-4" />
+            <h2 className="text-xl font-medium text-foreground mb-2">{title}</h2>
+            <p className="text-muted-foreground font-light">{description}</p>
         </motion.div>
     )
 }
