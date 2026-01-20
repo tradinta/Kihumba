@@ -60,104 +60,110 @@ export const WRITING_DATA = [
 
 export const PROJECT_DATA = [
   {
-    id: "b2b-platform",
-    title: "B2B Supply Chain Platform",
-    problem: "Fragmented supplier workflows and zero real-time visibility",
-    role: "End-to-end Ownership",
-    stack: "Next.js, Go, Redis, BigQuery, GCP",
-    outcome: "Scaled to 5k suppliers, processed 2M+ events daily",
+    id: "aegisnet",
+    title: "RWA Tokenization Protocol (AegisNet)",
+    problem: "Regulatory compliance and security for Real World Assets on-chain.",
+    role: "Lead Architect",
+    stack: "Solidity • UUPS • Go • Distributed Systems",
+    outcome: "Production-grade asset bridge with audit-ready security.",
     details: {
-      what: "A centralized procurement and logistics platform for mid-market manufacturers.",
-      who: "For operations directors dealing with 50+ unmanaged supplier relationships.",
-      why: "Legacy ERPs were too slow; email spreadsheets were causing 15% inventory slippage.",
+      what: "A production-grade RWA tokenization platform using UUPS proxies and a burn-and-mint bridge architecture.",
+      who: "Fintech enterprise requiring strict regulatory compliance.",
+      why: "Existing bridges lacked the compliance controls needed for regulated assets.",
       constraints: [
-        "Strict 3-month timeline to MVP due to supply season.",
-        "Must integrate with legacy SOAP-based on-premise ERPs.",
-        "Zero-trust security requirement for supplier access.",
-        "Budget capped at $15k/month for initial infra."
+        "Strict regulatory compliance.",
+        "Upgradeable smart contract architecture (UUPS).",
+        "Cross-chain state consistency."
       ],
       engineering: [
-        { title: "Go for Backend Services", desc: "Chosen for raw throughput on event processing and strict typing. Handled concurrent inventory updates without race conditions." },
-        { title: "gRPC Internally, REST Externally", desc: "Microservices communicated via Protobuf for speed; exposed standard OpenAPI REST endpoints for third-party logistics partners." },
-        { title: "Redis Strategy", desc: "Used as a write-through cache for inventory states. Reduced database load by 85% during morning order spikes." }
+        { title: "UUPS Proxy Pattern", desc: "Implemented UUPS for upgradeability, ensuring the contract logic could evolve without breaking state." },
+        { title: "Burn-and-Mint Bridge", desc: "Designed a secure cross-chain settlement logic to maintain asset scarcity across chains." },
+        { title: "Compliance Hooks", desc: "Integrated on-chain allowlists and freeze functionality for regulatory adherence." }
       ],
       frontend: {
-        intent: "Built on Next.js for hybrid rendering. Dashboard shells were statically generated (SSG), while inventory data streamed in via React Server Components to keep initial load under 800ms.",
-        points: ["Optimistic UI updates for inventory adjustments", "Virtual scrolling for 10k+ row data tables"]
+        intent: "Admin dashboard for asset management and minting controls.",
+        points: ["Real-time supply tracking", "Multi-sig integration for sensitive ops"]
       },
       marketing: {
-        strategy: "Targeted LinkedIn conversion ads focusing on 'Supply Chain Visibility'.",
-        execution: "Created motion graphics demonstrating the 'Chaos vs. Order' workflow."
+        strategy: "Focus on 'Institutional Grade Security'.",
+        execution: "Technical whitepapers and audit reports as primary assets."
       },
       reflection: {
-        shipped: "A fully functional supplier portal and admin command center.",
-        improved: "Reduced average PO processing time from 4 days to 4 hours.",
-        different: "I would have used a managed Auth provider (Clerk/Auth0) sooner. Rolling custom auth for multi-tenant organizations consumed 2 weeks of engineering time I can't get back."
+        shipped: "A secure, compliant tokenization platform.",
+        improved: "Achieved seamless cross-chain asset portability.",
+        different: "Would explore LayerZero for more generalized messaging earlier."
       }
     }
   },
   {
-    id: "fintech-migration",
-    title: "Fintech Core Migration",
-    problem: "Monolithic debt causing 45min build times and fragility",
-    role: "Lead Architect",
-    stack: "TypeScript, AWS Lambda, DynamoDB, Terraform",
-    outcome: "Zero-downtime cutover, 99.99% uptime achieved",
+    id: "mov33",
+    title: "High-Concurrency Marketplace (Mov33)",
+    problem: "Data loss and race conditions during high-traffic ticket drops.",
+    role: "Tech Lead",
+    stack: "Next.js 14 • Firebase • Cloud Functions",
+    outcome: "0% data loss during peak transaction loads across distributed user bases.",
     details: {
-      what: "Decomposition of a legacy Node.js monolith into domain-driven serverless functions.",
-      who: "High-frequency trading desk requiring sub-second execution logs.",
-      why: "The monolith was single-point-of-failure. One bad deployment took down the entire trading floor.",
+      what: "A high-traffic event ticketing marketplace.",
+      who: "Event organizers and thousands of concurrent buyers.",
+      why: "Previous solution crashed under load, leading to overselling.",
       constraints: [
-        "Data consistency is non-negotiable (financial ledgers).",
-        "Cannot pause trading for maintenance windows.",
-        "Compliance logging for every API interaction.",
-        "Strict AWS IAM permission boundaries."
+        "High concurrency during ticket drops.",
+        "Zero tolerance for overselling.",
+        "Real-time seat availability updates."
       ],
       engineering: [
-        { title: "Event-Driven Architecture", desc: "Decoupled transaction ingestion from processing using EventBridge. This ensured we never lost a trade, even if the processor crashed." },
-        { title: "DynamoDB Single Table Design", desc: "Optimized access patterns for 'GetAccountHistory'. reduced query latency to single-digit milliseconds." },
-        { title: "Infrastructure as Code", desc: "Everything Terraform. No manual console clicks. Allowed us to spin up ephemeral staging environments per PR." }
+        { title: "Atomic Transactions", desc: "Leveraged Firestore transactions to ensure inventory integrity." },
+        { title: "Idempotent Webhooks", desc: "Designed payment processing webhooks to handle duplicate events gracefully." },
+        { title: "Cloud Functions", desc: "Offloaded heavy processing (PDF generation, email) to serverless functions." }
       ],
       frontend: {
-        intent: "Internal admin tools rebuilt with Vite + React Query. Moved from stale-while-revalidate to real-time websockets for trade monitoring.",
-        points: ["WebSocket integration for live ledger updates", "Strict type-sharing between backend and frontend"]
+        intent: "Mobile-first checkout flow optimized for speed.",
+        points: ["Real-time seat map", "Optimistic inventory locking"]
+      },
+      marketing: {
+        strategy: "Simulated load tests shared on social media to build trust.",
+        execution: "Launch countdowns to drive concentrated traffic."
       },
       reflection: {
-        shipped: "A resilient, auto-scaling ledger system.",
-        improved: "System can now handle 10x volume without manual intervention.",
-        different: "I underestimated the cold-start times of Lambdas inside VPCs initially. Had to implement provisioned concurrency which increased costs slightly."
+        shipped: "A stable ticketing platform handling thousands of concurrents.",
+        improved: "Checkout conversion rate increased by stabilizing the backend.",
+        different: "Would consider a SQL database for complex relational queries if defining the schema from scratch again."
       }
     }
   },
   {
-    id: "content-engine",
-    title: "Media Intelligence Engine",
-    problem: "Manual video tagging was unscalable for 10TB+ library",
-    role: "Full Stack + AI Ops",
-    stack: "Python, FastAPI, OpenAI API, React, FFmpeg",
-    outcome: "Automated 90% of metadata tagging workflow",
+    id: "uvumbuzi",
+    title: "Decentralized API Infrastructure",
+    problem: "Slow deployments and frequent production incidents.",
+    role: "Full Stack Infrastructure Engineer",
+    stack: "Go • gRPC • Docker • CI/CD",
+    outcome: "Reduced deployment time by 40% and cut production incidents by half.",
     details: {
-      what: "An automated pipeline that ingests raw footage, transcodes it, and tags it using vision models.",
-      who: "Creative agency with thousands of archived assets.",
-      why: "Editors spent 30% of their time searching for clips instead of editing.",
+      what: "Scalable API layers supporting decentralized reporting and analytics.",
+      who: "Community network nodes.",
+      why: "Manual deployment processes were error-prone and slow.",
       constraints: [
-        "Processing must happen asynchronously (long-running jobs).",
-        "Cost control on GPU instances.",
-        "UI must be intuitive for non-technical video editors."
+        "Distributed node network.",
+        "Data integrity across nodes.",
+        "Minimal downtime updates."
       ],
       engineering: [
-        { title: "Queue-Based Processing", desc: "Used BullMQ (Redis) to handle video transcoding jobs. Decoupled the API from the heavy lifting." },
-        { title: "Vector Search", desc: "Stored embeddings of video descriptions in Pinecone, allowing semantic search like 'show me a happy dog running' instead of keyword matches." },
-        { title: "FFmpeg WASM", desc: "Offloaded simple video trimming to the client-side browser to save server bandwidth." }
+        { title: "gRPC Services", desc: "Implemented high-performance internal communication between microservices." },
+        { title: "Dockerized Workflows", desc: "Standardized environments from dev to prod to eliminate 'works on my machine' issues." },
+        { title: "CI/CD Pipelines", desc: "Automated testing and deployment to ensure reliability." }
       ],
       frontend: {
-        intent: "Focus on media playback performance. Custom video player with frame-accurate seeking and metadata overlays.",
-        points: ["Waveform visualization", "Frame-accurate seeking"]
+        intent: "Status dashboard for node health.",
+        points: ["Live connectivity maps", "Error rate monitoring"]
+      },
+      marketing: {
+        strategy: "Developer-focused documentation.",
+        execution: "Open source contributions."
       },
       reflection: {
-        shipped: "A searchable internal 'Netflix' for raw assets.",
-        improved: "Search retrieval time dropped to <200ms.",
-        different: "I would utilize edge functions for the metadata display layer earlier to reduce latency for global teams."
+        shipped: "A robust, automated infrastructure layer.",
+        improved: "System stability and developer velocity.",
+        different: "Would implement OpenTelemetry earlier for better observability."
       }
     }
   }

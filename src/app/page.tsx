@@ -7,17 +7,19 @@ import Link from 'next/link';
 import { SkillSection } from './components/landing/skill-section';
 import { ProjectStrip } from './components/landing/project-strip';
 import { VideoPlaceholders } from './components/landing/video-placeholders';
+import { useProjects } from '@/hooks/use-content';
 
 const roles = [
-  { title: "Software Engineering", sub: "Full-stack. Real systems." },
-  { title: "Graphic Design", sub: "Brand. Motion. Visual Identity." },
-  { title: "Video Editing", sub: "Marketing-driven. Performance aware." },
-  { title: "Cloud & DevOps", sub: "AWS. GCP. Production scale." }
+  { title: "Systems Architecture", sub: "High-scale. Distributed. Fault-tolerant." },
+  { title: "Data Storytelling", sub: "Turning raw systems data into C-Suite narratives." },
+  { title: "Blockchain Engineering", sub: "EVM. Smart Contracts. RWA Tokenization." },
+  { title: "Technical Leadership", sub: "Mentorship. Strategy. End-to-end ownership." }
 ];
 
 export default function LandingPage() {
   const [loaded, setLoaded] = useState(false);
   const [roleIndex, setRoleIndex] = useState(0);
+  const { projects } = useProjects();
 
   useEffect(() => {
     const timer = setTimeout(() => setLoaded(true), 100);
@@ -47,9 +49,9 @@ export default function LandingPage() {
             transition={{ duration: 1.5, ease: [0.16, 1, 0.3, 1], delay: 0.5 }}
             className="text-5xl md:text-7xl lg:text-8xl font-medium tracking-tighter leading-[0.9] text-foreground"
           >
-            I design, engineer, <br/>
-            <span className="text-foreground/70">and ship digital systems</span> <br/>
-            <span className="text-foreground/40">from pixels to production.</span>
+            I architect, engineer, <br />
+            <span className="text-foreground/70">and visualize complex systems</span> <br />
+            <span className="text-foreground/40">from core to C-Suite.</span>
           </motion.h1>
           <div className="h-20 mt-12 flex flex-col justify-center">
             <AnimatePresence mode="wait">
@@ -77,13 +79,18 @@ export default function LandingPage() {
 
       <section className="relative z-10 pb-32">
         <div className="max-w-7xl mx-auto px-6 md:px-12 mb-12">
-           <motion.p initial={{ opacity: 0, y: 10 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="text-muted-foreground font-mono text-sm uppercase tracking-widest mb-2">The Quiet Work</motion.p>
-           <motion.h2 initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} className="text-2xl font-light text-foreground/80 max-w-lg">Most of my work ships quietly, behind logins and NDAs.</motion.h2>
+          <motion.p initial={{ opacity: 0, y: 10 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="text-muted-foreground font-mono text-sm uppercase tracking-widest mb-2">The Quiet Work</motion.p>
+          <motion.h2 initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} className="text-2xl font-light text-foreground/80 max-w-lg">Most of my work ships quietly, behind logins and NDAs.</motion.h2>
         </div>
         <div className="border-t border-border">
-          <ProjectStrip title="SaaS Platform Core" stack="Next.js + Go • AWS" outcome="Scaled to 100k+ daily active users with sub-100ms API latency." />
-          <ProjectStrip title="E-Commerce Analytics" stack="BigQuery • React • Python" outcome="Processed $50M+ transaction volume with real-time reporting." />
-          <ProjectStrip title="Fintech Mobile App" stack="Flutter • Cloud Functions" outcome="Zero-downtime migration of legacy system to microservices." />
+          {projects.slice(0, 3).map((project) => (
+            <ProjectStrip
+              key={project.id}
+              title={project.title}
+              stack={project.stack}
+              outcome={project.outcome}
+            />
+          ))}
         </div>
       </section>
 
@@ -101,7 +108,7 @@ export default function LandingPage() {
 
       <section className="relative z-10 py-48 px-6 md:px-12 flex flex-col items-center justify-center text-center">
         <motion.p initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} className="max-w-xl text-foreground/70 text-lg md:text-xl font-light leading-relaxed mb-12">
-          If you need someone who can design it, build it, scale it, and ship it<br/><span className="text-foreground font-normal">without hand-holding.</span>
+          If you need someone who can design it, build it, scale it, and ship it<br /><span className="text-foreground font-normal">without hand-holding.</span>
         </motion.p>
 
         <div className="flex flex-col md:flex-row gap-6">
@@ -111,7 +118,7 @@ export default function LandingPage() {
               whileTap={{ scale: 0.98 }}
               className="group relative px-8 py-4 bg-transparent border border-border text-foreground rounded-sm overflow-hidden transition-all duration-300"
             >
-               <span className="relative z-10 flex items-center gap-3 font-medium tracking-wide">
+              <span className="relative z-10 flex items-center gap-3 font-medium tracking-wide">
                 View Systems Index
               </span>
             </motion.button>
